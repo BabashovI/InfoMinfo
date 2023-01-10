@@ -14,4 +14,4 @@ hosts.aws_ec2.yml
 *cfg.bck
 *.pem
 *.zip
-.DS_Store
+*.DS_Store

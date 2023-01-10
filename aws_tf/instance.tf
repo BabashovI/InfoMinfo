@@ -9,7 +9,7 @@ resource "aws_instance" "bot_server" {
   }
 
   provisioner "local-exec" {
-    command = "echo ${self.public_ip} > hosts"
+    command = "echo ${self.public_ip} > ansible/hosts"
   }
 
   tags = {
