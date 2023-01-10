@@ -1,0 +1,42 @@
+- name: Configure host after TF deployment
+  hosts: all
+  user: ubuntu
+  become: true
+  gather_facts: false
+  tasks:
+    - name: Install  packages
+      ansible.builtin.apt:
+        pkg:
+          - python3.10-venv
+          - python3-pip
+          - curl
+        update_cache: true
+
+    - name: Copy required files
+      ansible.builtin.copy:
+        src: "{{ item }}"
+        dest: /infominfo/
+        mode: 0644
+        follow: true
+      with_items:
+        - ../requirements.txt
+        - ../py_scripts/infominfo.py
+        - ../py_scripts/info_scraper.py
+        - ../py_scripts/.env
+      notify: Copy completed
+
+    - name: Pip install required packages
+      ansible.builtin.pip:
+        requirements: /infominfo/requirements.txt
+
+    - name: Create job for running py script after reboot
+      ansible.builtin.cron:
+        name: "a job for reboot"
+        special_time: reboot
+        job: "/usr/bin/python3 /infominfo/infominfo.py"
+
+  handlers:
+    - name: Copy completed
+      ansible.builtin.shell:
+        cmd: python3 infominfo.py && shutdown -h -t 60 &>/dev/null
+        chdir: /infominfo/

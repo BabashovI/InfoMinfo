@@ -1,0 +1,17 @@
+.env
+.env
+*.session
+Python.code-workspace
+__pycache__
+telbot.py
+venv
+*.sh
+hosts.aws_ec2.yml
+.vscode/
+.terraform/
+*.lock.hcl
+*.tfstate
+*.tfstate.backup
+*cfg.bck
+*.pem
+*.zip

@@ -1,0 +1,10 @@
+beautifulsoup4==4.11.1
+bs4==0.0.1
+lxml==4.9.2
+prettytable==3.5.0
+pyTelegramBotAPI==4.8.0
+python-dotenv==0.21.0
+requests==2.28.1
+urllib3==1.26.13
+xlrd==2.0.1
+lxml==4.9.2
