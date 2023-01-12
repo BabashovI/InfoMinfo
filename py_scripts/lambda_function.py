@@ -29,11 +29,9 @@ def ec2_info():
 def lambda_handler(event, context):
     a = ec2_info()
 
-    if 'i-' not in a:
-        return "no instance available"
-
-    if event['action'] == 'stop':
-        ec2.stop_instances(InstanceIds=a)
-    if event['action'] == 'start':
-        ec2.start_instances(InstanceIds=a)
-    return "DONE"
+    if len(a) > 0:
+        if event['action'] == 'stop':
+            ec2.stop_instances(InstanceIds=a)
+        if event['action'] == 'start':
+            ec2.start_instances(InstanceIds=a)
+        return "DONE"

@@ -12,7 +12,7 @@ variable "type" {
 
 variable "cron" {
   default = {
-    "start" : "cron(00 08 * * ? *)",
-    "stop" : "cron(00 09 * * ? *)"
+    "start" : "cron(00 09 * * ? *)",
+    "stop" : "cron(00 08 * * ? *)"
   }
 }

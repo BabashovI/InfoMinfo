@@ -72,15 +72,14 @@ EOF
 }
 
 #-_- Attache a Managed IAM Policy to an ec2-lambda-function-role -_-#
-resource "aws_iam_role_policy_attachment" "lambda_logs" {
+resource "aws_iam_role_policy_attachment" "attach-policy" {
   role       = aws_iam_role.ec2-lambda-function-role.name
   policy_arn = aws_iam_policy.ec2_lambda_function_policy.arn
 }
 
-#-_- Creatin Clod Watch log group for lamda -_-#
+#-_- Creatin Cloud Watch log group for lamda -_-#
 resource "aws_cloudwatch_log_group" "ec2_lambda_function" {
-  for_each          = var.cron
-  name              = "/aws/lambda/lamda-func-${each.key}"
+  name              = "/aws/lambda/ec2_lambda_function"
   retention_in_days = 3
 }
 
